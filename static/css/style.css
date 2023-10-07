@@ -90,7 +90,7 @@
 
 .user-dashboard .nav-item {
   display: flex;
-  width: 336px;
+  width: 96.5%;
   height: 56px;
   align-items: center;
   gap: 12px;
@@ -112,6 +112,11 @@
 }
 
 .user-dashboard .img {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+.user-dashboard .img2 {
   position: relative;
   width: 24px;
   height: 24px;
@@ -145,13 +150,26 @@
 
 .user-dashboard .state-layer-wrapper {
   display: flex;
-  width: 336px;
+  width: 100%;
   height: 56px;
   align-items: center;
   gap: 12px;
   position: relative;
   border-radius: 100px;
   overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.user-dashboard .state-layer-wrapper:hover {
+  display: flex;
+  width: 100%;
+  height: 56px;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  border-radius: 100px;
+  overflow: hidden;
+  background-color: #e8def8;
 }
 
 .user-dashboard .text-wrapper-3 {
@@ -269,7 +287,7 @@
 
 .user-dashboard .card-state-layer {
   position: absolute;
-  width: 956px;
+  width: 100%;
   height: 80px;
   top: 0;
   left: 0;
@@ -425,7 +443,7 @@
 .user-dashboard .frame {
   flex-wrap: wrap;
   width: 50%;
-  gap: 76px 24px;
+  gap: 24px 24px;
   position: absolute;
   top: 184px;
   left: 25%;
@@ -450,16 +468,16 @@
 
 .user-dashboard .stacked-card {
   display: flex;
-  width: 22.9%;
-  height: 380px;
+  width: 46%;
+  height: 250px;
   align-items: flex-start;
   position: relative;
   border-radius: 12px;
 }
 
 .user-dashboard .card-state-layer-2 {
-  width: 22.9%;
-  height: 380px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -533,7 +551,7 @@
 
 .user-dashboard .text-wrapper-4 {
   position: relative;
-  width: 212px;
+  width: 30.04%;
   height: 40px;
   font-family: "Inter-Medium", Helvetica;
   font-weight: 500;
@@ -545,7 +563,7 @@
 
 .user-dashboard .horizontal-card-2 {
   display: flex;
-  width: 956px;
+  width: 95%;
   height: 80px;
   align-items: flex-start;
   position: relative;
@@ -653,7 +671,7 @@
 }
 
 .user-dashboard .card-state-layer-3 {
-  width: 414px;
+  width: 100%;
   height: 80px;
   position: absolute;
   top: 0;
