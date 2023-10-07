@@ -110,6 +110,17 @@ def projecttag():
 
     return jsonify(points)
 
+@app.route('/api/scholarly',methods=['POST'])
+def scholarlyapi():
+    receiveddata=request.get_json()
+    username=receiveddata['username']
+    title=receiveddata['title']
+    search_query = scholarly.search_pubs(f"Title:'+{title}")
+    jsondata=[]
+    for i in search_query:
+        jsondata.append(i)
+    return jsonify(jsondata)
+
 
 @app.route('/home',methods=['GET','POST'])
 def home():

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/css/globals.css" />
+    <link rel="stylesheet" href="/static/css/styleguide.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body>
     <div class="user-dashboard">
@@ -89,7 +89,7 @@
         <div class="top-app-bar">
           <div class="div-2">
             <div class="container">
-              <div class="img-wrapper"><img class="img" src="img/menu-24px.svg" /></div>
+              <button id="toggleNav"><div class="img-wrapper"><img class="img" src="img/menu-24px.svg" /></div></button>
             </div>
           </div>
           <div class="headline-2">SciMerge</div>
@@ -128,78 +128,6 @@
         </div>
         <div class="frame">
           <p class="p">Hi S, what are you looking for today?</p>
-          <div class="stacked-card">
-            <div class="card-state-layer-2"></div>
-            <div class="content-container">
-              <div class="media-text-content">
-                <div class="header-3">
-                  <div class="content-2">
-                    <div class="text">
-                      <div class="header-2">Create a new project</div>
-                      <p class="subhead-2">Start by creating a new project</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-3"></div>
-              </div>
-            </div>
-          </div>
-          <div class="stacked-card">
-            <div class="card-state-layer-2"></div>
-            <div class="content-container">
-              <div class="media-text-content">
-                <div class="header-3">
-                  <div class="content-2">
-                    <div class="text">
-                      <div class="header-2">Join an existing project</div>
-                      <p class="subhead-2">Browse amongst projects and join one</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-4"></div>
-              </div>
-            </div>
-          </div>
-          <div class="text-wrapper-4">Current projects</div>
-          <div class="horizontal-card-2">
-            <div class="card-state-layer"></div>
-            <div class="content-container">
-              <div class="header">
-                <div class="content">
-                  <div class="text">
-                    <div class="header-2">Header</div>
-                    <div class="subhead">Subhead</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="horizontal-card-2">
-            <div class="card-state-layer"></div>
-            <div class="content-container">
-              <div class="header">
-                <div class="content">
-                  <div class="text">
-                    <div class="header-2">Header</div>
-                    <div class="subhead">Subhead</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="horizontal-card-2">
-            <div class="card-state-layer"></div>
-            <div class="content-container">
-              <div class="header">
-                <div class="content">
-                  <div class="text">
-                    <div class="header-2">Header</div>
-                    <div class="subhead">Subhead</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="frame-2">
           <div class="frame-3">
@@ -267,4 +195,20 @@
       </div>
     </div>
   </body>
+  <script>
+    $(document).ready(function() {
+      
+    
+    const menu = document.getElementById('toggleNav');
+    const drawer = document.querySelector('.navigation-drawer');
+    const main = document.querySelector('.user-dashboard');
+    menu.addEventListener('click', function(e) {
+      drawer.classList.toggle('open');
+      e.stopPropagation();
+    });
+    main.addEventListener('click', function() {
+      drawer.classList.remove('open');
+    });
+  });
+  </script>
 </html>
