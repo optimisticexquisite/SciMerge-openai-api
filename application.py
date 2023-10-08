@@ -12,7 +12,7 @@ app.secret_key = 'mysecretkey368768uyfj9vu86fy'
 app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=120)
 app.config['FLASK_APP'] = app
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-openai.api_key='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'
+openai.api_key='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'
 m=hashlib.sha256()
 myclient=pymongo.MongoClient("mongodb+srv://scimerge358:abcd1234@cluster0.ehalt0r.mongodb.net/")
 scimerge=myclient["scimerge"]
@@ -205,23 +205,30 @@ def home():
 def createproject():
     if 'username' in session:
         if request.method=='POST':
-            m=hashlib.sha256()
-            m.update(request.form['password'].encode('utf-8'))
-            password=m.hexdigest()
-            user=users.find_one({"username":session['username']})
-            if user['password']==password:
-                title=request.form['title']
-                abstract=request.form['abstract']
-                tags=request.form['tags']
+            if 'username' in session:
+                jsondata=request.get_json()
+                title=jsondata['title']
+                abstract=jsondata['abstract']
+                tags=jsondata['tags']
                 uniqueid=str(uuid.uuid4())
                 data.insert_one({"username":session['username'],"title":title,"abstract":abstract,"tags":tags,"uniqueid":uniqueid})
-                return redirect(url_for('home'))
+                users.update_one({"username":session['username']},{"$push":{"currentprojects":uniqueid}})
+                return jsonify({"uniqueid":uniqueid})
             else:
                 return render_template('createproject.html')
         return render_template('createproject.html')
     else:
         return redirect(url_for('home'))
 
+@app.route('/suggestions/<projectid>',methods=['GET','POST'])
+def suggestions(projectid):
+    if 'username' in session:
+        if request.method=='POST':
+            print("Posted")
+        project=data.find_one({"uniqueid":projectid})
+        return render_template('suggestions.html',project=project)
+    else:
+        return redirect(url_for('home'))
 
 
 if __name__ == '__main__':

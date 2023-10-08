@@ -8,6 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
+    <div class="modal" id="loadingModal">
+      <div class="modal-content">
+          <p>Loading...</p>
+      </div>
+  </div>
     <div class="project-creation">
       <div class="div">
         <div class="component">
@@ -142,7 +147,7 @@
           <button class="button">
             <div class="label-text-wrapper"><div class="label-text">Cancel</div></div>
           </button>
-          <button class="button2">
+          <button class="button2" id="continuebutton">
             <div class="label-text-wrapper"><div class="label-text-2">Save &amp; Continue</div></div>
           </button>
         </div>
@@ -250,6 +255,7 @@
     function fetchtags() {
       var title=document.getElementById("title").value;
       var abstract=document.getElementById("abstract").value;
+      document.getElementById("loadingModal").style.display = "block";
       fetch("/api/tags/project", {
         method: "POST",
         headers: {
@@ -261,6 +267,7 @@
           username: "user"
         })
       }).then(function(response) {
+        document.getElementById("loadingModal").style.display = "none";
         return response.json();
       }).then(function(data) {
         console.log(data);
@@ -290,6 +297,33 @@
       
       )
     }
+    function submitData() {
+      var title=document.getElementById("title").value;
+      var abstract=document.getElementById("abstract").value;
+      var tags=document.getElementsByClassName("label-text-4");
+      var taglist=[];
+      for (i=0 ; i<tags.length ; i++){
+        taglist.push(tags[i].innerHTML);
+      }
+      fetch("/createproject", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: title,
+          abstract: abstract,
+          tags: taglist
+        })
+      }).then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        console.log(data);
+        projectid=data.uniqueid;
+        window.location.href = '/suggestions/'+projectid;
+      });
+    }
+
     function fetchAIdata() {
       fetchsuggestions();
       fetchtags();
@@ -297,6 +331,7 @@
     $(document).ready(function() {
       console.log("ready");
       document.getElementById("fetchsuggestionbutton").addEventListener("click", fetchAIdata);
+      document.getElementById("continuebutton").addEventListener("click", submitData);
     });
   </script>
 </html>
