@@ -350,8 +350,8 @@
 }
 
 .user-dashboard .subhead {
-  width: 56.81px;
-  text-align: center;
+  width: 90%;
+  text-align: left;
   position: relative;
   font-family: var(--m3-body-medium-font-family);
   font-weight: var(--m3-body-medium-font-weight);

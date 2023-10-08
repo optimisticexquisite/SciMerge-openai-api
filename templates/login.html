@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/css/globals.css" />
+    <link rel="stylesheet" href="/static/css/styleguide2.css" />
+    <link rel="stylesheet" href="/static/css/style2.css" />
   </head>
   <body>
     <div class="login-page">
@@ -21,12 +21,13 @@
               </div>
             </button>
             <div class="text-wrapper">Or</div>
+            <form action="/login" method="post">
             <div class="text-field">
               <div class="state-layer-wrapper">
                 <div class="content-wrapper">
                   <div class="content">
                     <div class="div-wrapper"><div class="label-text-2"></div></div>
-                    <input class="input-text" placeholder="Username" type="text" />
+                    <input class="input-text" name="username" placeholder="Username" type="text" />
                   </div>
                 </div>
               </div>
@@ -37,15 +38,16 @@
                 <div class="content-wrapper">
                   <div class="content">
                     <div class="div-wrapper"><div class="label-text-2"></div></div>
-                    <div class="div-wrapper"><div class="input-text-2">Password</div></div>
+                    <input class="input-text" type="password" name="password" placeholder="password" />
                   </div>
                 </div>
               </div>
               <img class="active-indicator" src="img/image.svg" />
             </div>
-            <button class="button-2">
+            <button type="submit" class="button-2">
               <div class="label-text-wrapper"><div class="label-text-3">Login</div></div>
             </button>
+          </form>
             <button class="button-3">
               <div class="state-layer-2"><div class="label-text-4">Forgot password</div></div>
             </button>

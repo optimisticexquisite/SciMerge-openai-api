@@ -1,11 +1,22 @@
 import openai
+from datetime import timedelta
+import pymongo
+import hashlib
 from scholarly import scholarly
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask import jsonify
 import json
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
+app.secret_key = 'mysecretkey368768uyfj9vu86fy'
+app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=120)
+app.config['FLASK_APP'] = app
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 openai.api_key='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'
-
+m=hashlib.sha256()
+myclient=pymongo.MongoClient("mongodb+srv://scimerge358:abcd1234@cluster0.ehalt0r.mongodb.net/")
+scimerge=myclient["scimerge"]
+users=scimerge["users"]
+data=scimerge["data"]
 @app.route('/api/liveprompt',methods=['POST'])
 def liveprompt():
     received_data=request.get_json()
@@ -122,10 +133,71 @@ def scholarlyapi():
     return jsonify(jsondata)
 
 
+
+
+#WEB APIs
+@app.route('/webapi/project/<projectid>',methods=['GET'])
+def projectwebapi(projectid):
+    project=data.find_one({"uniqueid":projectid})
+    jsonfile={}
+    jsonfile['title']=project['title']
+    jsonfile['abstract']=project['abstract']
+    jsonfile['tags']=project['tags']
+    jsonfile['username']=project['username']
+    jsonfile['uniqueid']=project['uniqueid']
+    return jsonify(jsonfile)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/',methods=['GET'])
+def index():
+    if 'username' in session:
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+    if request.method=='POST':
+        m=hashlib.sha256()
+        m.update(request.form['password'].encode('utf-8'))
+        password=m.hexdigest()
+        user=users.find_one({"username":request.form['username']})
+        if user:
+            if user['password']==password:
+                session['username']=user['username']
+                return redirect(url_for('home'))
+            else:
+                return render_template('login.html')
+    return render_template('login.html')
+
+@app.route('/logout',methods=['GET','POST'])
+def logout():
+    session.pop('username',None)
+    return redirect(url_for('login'))
+
 @app.route('/home',methods=['GET','POST'])
 def home():
     if request.method=='POST':
           print("Posted")
-    return render_template('index.html')
+    if 'username' in session:
+        user=users.find_one({"username":session['username']})
+        currentprojects=json.dumps(user['currentprojects'])
+        pastprojects=json.dumps(user['pastprojects'])
+        return render_template('index.html',userdata=user,currentprojects=currentprojects,pastprojects=pastprojects)
+    else:
+        return render_template('login.html')
 if __name__ == '__main__':
     app.run(debug=True)
