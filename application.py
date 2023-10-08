@@ -12,7 +12,7 @@ app.secret_key = 'mysecretkey368768uyfj9vu86fy'
 app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=120)
 app.config['FLASK_APP'] = app
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-openai.api_key='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'
+openai.api_key='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'
 m=hashlib.sha256()
 myclient=pymongo.MongoClient("mongodb+srv://scimerge358:abcd1234@cluster0.ehalt0r.mongodb.net/")
 scimerge=myclient["scimerge"]
