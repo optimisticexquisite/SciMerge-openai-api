@@ -1,4 +1,5 @@
 import openai
+import uuid
 from datetime import timedelta
 import pymongo
 import hashlib
@@ -11,7 +12,7 @@ app.secret_key = 'mysecretkey368768uyfj9vu86fy'
 app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=120)
 app.config['FLASK_APP'] = app
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-openai.api_key='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'
+openai.api_key='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'
 m=hashlib.sha256()
 myclient=pymongo.MongoClient("mongodb+srv://scimerge358:abcd1234@cluster0.ehalt0r.mongodb.net/")
 scimerge=myclient["scimerge"]
@@ -24,7 +25,7 @@ def liveprompt():
     title=received_data['title']
     abstract=received_data['abstract']
     question="Title:'"+title+"'\n\nAbstract: "+abstract
-    engineeredprompt=question+'\n'+"Make points which can be added to this abstract to make it more informative and useful for the reader.\n\n Response: MUST BE JSON(point1: 'point1', point2: 'point2', point3: 'point3', point4: 'point4', point5: 'point5', point6: 'point6', point7: 'point7', point8: 'point8', point9: 'point9', point10: 'point10')"
+    engineeredprompt=question+'\n'+"Make points which can be added to this abstract to make it more informative and useful for the reader.\n\n Response: MUST BE JSON(point1: 'point1', point2: 'point2', point3: 'point3', point4: 'point4', point5: 'point5')"
     questionreply=openai.ChatCompletion.create(
             model="gpt-3.5-turbo-16k-0613",
             temperature=0,
@@ -44,7 +45,7 @@ def liveprompt():
             replytext=questionreply.choices[0].message.content
             points.append(json.loads(replytext)[f"point{i}"])
             print(points[i-1])
-            if i==10:
+            if i==5:
                 break
             i+=1
     return jsonify(points)
@@ -199,5 +200,29 @@ def home():
         return render_template('index.html',userdata=user,currentprojects=currentprojects,pastprojects=pastprojects)
     else:
         return render_template('login.html')
+    
+@app.route('/createproject',methods=['GET','POST'])
+def createproject():
+    if 'username' in session:
+        if request.method=='POST':
+            m=hashlib.sha256()
+            m.update(request.form['password'].encode('utf-8'))
+            password=m.hexdigest()
+            user=users.find_one({"username":session['username']})
+            if user['password']==password:
+                title=request.form['title']
+                abstract=request.form['abstract']
+                tags=request.form['tags']
+                uniqueid=str(uuid.uuid4())
+                data.insert_one({"username":session['username'],"title":title,"abstract":abstract,"tags":tags,"uniqueid":uniqueid})
+                return redirect(url_for('home'))
+            else:
+                return render_template('createproject.html')
+        return render_template('createproject.html')
+    else:
+        return redirect(url_for('home'))
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

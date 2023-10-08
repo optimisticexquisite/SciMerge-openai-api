@@ -130,7 +130,7 @@
         </div>
         <div class="frame">
           <p class="p">Hi {{userdata.firstname}}, what are you looking for today?</p>
-          <div class="stacked-card">
+          <div class="stacked-card" id="createproject">
             <div class="card-state-layer-2"></div>
             <div class="content-container">
               <div class="media-text-content">
@@ -146,7 +146,7 @@
               </div>
             </div>
           </div>
-          <div class="stacked-card">
+          <div class="stacked-card" id="joinproject">
             <div class="card-state-layer-2"></div>
             <div class="content-container">
               <div class="media-text-content">
@@ -278,7 +278,9 @@
 
     $(document).ready(function() {
       fetchCurrentProjects();
-    
+    document.getElementById('createproject').addEventListener('click', function() {
+      window.location.href = '/createproject';
+    });
     const menu = document.getElementById('toggleNav');
     const drawer = document.querySelector('.navigation-drawer');
     const main = document.querySelector('.user-dashboard');
