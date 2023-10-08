@@ -11,87 +11,36 @@
     <div class="user-dashboard">
       <div class="div">
         <div class="navigation-drawer">
-          <div class="headline"><div class="text-wrapper">Title</div></div>
-          <div class="section-header">
-            <div class="left"><div class="label">Section Header</div></div>
-          </div>
+          
           <div class="state-layer-wrapper">
             <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-2">Label</div>
-              <div class="badge-label-text">100+</div>
-            </div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
+              <img class="img" src="/static/icons/dashboard.svg" />
+              <div class="text-wrapper-3">Dashboard</div>
               <div class="badge-label-text-2">100+</div>
             </div>
           </div>
           <div class="state-layer-wrapper">
             <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
+              <img class="img" src="/static/icons/newproject.svg" />
+              <div class="text-wrapper-3">Create A Project</div>
               <div class="badge-label-text-2">100+</div>
             </div>
           </div>
           <div class="state-layer-wrapper">
             <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
+              <img class="img" src="/static/icons/community.svg" />
+              <div class="text-wrapper-3">Community</div>
               <div class="badge-label-text-2">100+</div>
             </div>
           </div>
-          <div class="divider"><img class="divider-2" src="/static/icons/divider.svg" /></div>
-          <div class="section-header">
-            <div class="left"><div class="label">Section Header</div></div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
-            </div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
-            </div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
-            </div>
-          </div>
-          <div class="divider"><img class="divider-2" src="/static/icons/divider-2.svg" /></div>
-          <div class="section-header">
-            <div class="left"><div class="label">Section Header</div></div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
-            </div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
-            </div>
-          </div>
-          <div class="state-layer-wrapper">
-            <div class="state-layer">
-              <img class="img" src="/static/icons/icon.svg" />
-              <div class="text-wrapper-3">Label</div>
-            </div>
-          </div>
+          
         </div>
         <div class="top-app-bar">
           <div class="div-2">
             <div class="container">
-              <button id="toggleNav"><div class="img-wrapper"><img class="img" src="/static/icons/menu-24px.svg" /></div></button>
+              <button id="toggleNav">
+                <img  style="height: 50px; width: 50px;" src="/static/icons/scimerge_high_resolution_logo_color_on_transparent_background.svg" alt="sitelogo" />
+              </button>
             </div>
           </div>
           <div class="headline-2">SciMerge</div>
@@ -129,7 +78,9 @@
           </div>
         </div>
         <div class="frame">
-          <p class="p">Hi {{userdata.firstname}}, what are you looking for today?</p>
+          <div class="content-wrap">
+          <p class="p content-wrap" >Hi {{userdata.firstname}}, what are you looking for today?</p>
+          </div>
           <div class="stacked-card" id="createproject">
             <div class="card-state-layer-2"></div>
             <div class="content-container">

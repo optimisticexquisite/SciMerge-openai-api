@@ -152,6 +152,7 @@
   display: flex;
   width: 100%;
   height: 56px;
+  margin-top: 1.5em;
   align-items: center;
   gap: 12px;
   position: relative;
@@ -454,7 +455,7 @@
 .user-dashboard .p {
   position: relative;
   width: 496px;
-  height: 40px;
+  height: 30px;
   margin-top: -1px;
   font-family: var(--m3-headline-medium-font-family);
   font-weight: var(--m3-headline-medium-font-weight);
@@ -462,7 +463,6 @@
   font-size: var(--m3-headline-medium-font-size);
   letter-spacing: var(--m3-headline-medium-letter-spacing);
   line-height: var(--m3-headline-medium-line-height);
-  white-space: nowrap;
   font-style: var(--m3-headline-medium-font-style);
 }
 
@@ -525,6 +525,7 @@
   letter-spacing: var(--m3-body-medium-letter-spacing);
   line-height: var(--m3-body-medium-line-height);
   font-style: var(--m3-body-medium-font-style);
+  overflow-wrap: break-word;
 }
 
 .user-dashboard .media-3 {
@@ -688,4 +689,50 @@
   height: 80px;
   align-items: center;
   position: relative;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+@media only screen and (min-width: 300px) {
+  .content-wrap{
+    overflow-wrap: break-word;
+   }
+   .subhead-2{
+    overflow-wrap: break-word;
+  }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+  .content-wrap{
+    overflow-wrap: break-word;
+   }
+   .subhead-2{
+    overflow-wrap: break-word;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .content-wrap{
+   overflow-wrap: break-word;
+  }
+  .subhead-2{
+    overflow-wrap: break-word;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
